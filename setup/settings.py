@@ -9,10 +9,8 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-from pathlib import Path, os
-from dotenv import load_dotenv
 
-load_dotenv()
+import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,13 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
+SECRET_KEY = 'we2q@@2p30+=^#(xbgl7e@3+r2dt+zmf#us2m$ix=q&n+=y-z$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -127,21 +124,19 @@ STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
- #   'DEFAULT_PERMISSION_CLASSES': [
- #       'rest_framework.permissions.IsAuthenticated',
- #       'rest_framework.permissions.DjangoModelPermissions',
- #   ],
- #   'DEFAULT_AUTHENTICATION_CLASSES': [
- #       'rest_framework.authentication.BasicAuthentication',
- #   ],
+    # 'DEFAULT_PERMISSION_CLASSES':[
+    #     'rest_framework.permissions.IsAuthenticated',
+    #     'rest_framework.permissions.DjangoModelPermissions'
+    # ],
+    # 'DEFAULT_AUTHENTICATION_CLASSES':[
+    #     'rest_framework.authentication.BasicAuthentication',
+    # ],
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle',
- #       'rest_framework.throttling.UserRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
         'anon': '100/day',
-#        'user': '1000/day',
-    },
+    }
 }
 
 CORS_ALLOWED_ORIGINS = [

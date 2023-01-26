@@ -1,15 +1,12 @@
 from rest_framework import viewsets, generics
-from escola.models import Aluno, Curso, Matricula
-from escola.serializer import AlunoSerializer, AlunoSerializerV2, CursoSerializer
-from escola.serializer import MatriculaSerializer, ListaMatriculasAlunoSerializer
-from escola.serializer import ListaAlunosMatriculadosSerializer
-from rest_framework.response import Response
 from rest_framework import status
+from escola.models import Aluno, Curso, Matricula
+from escola.serializer import AlunoSerializer, AlunoSerializerV2, CursoSerializer, MatriculaSerializer, ListaMatriculasAlunoSerializer, ListaAlunosMatriculadosSerializer
+from rest_framework.response import Response
 
 class AlunosViewSet(viewsets.ModelViewSet):
     """Exibindo todos os alunos e alunas"""
     queryset = Aluno.objects.all()
-
     def get_serializer_class(self):
         if self.request.version == 'v2':
             return AlunoSerializerV2
@@ -27,15 +24,14 @@ class CursosViewSet(viewsets.ModelViewSet):
             serializer.save()
             response = Response(serializer.data, status=status.HTTP_201_CREATED)
             id = str(serializer.data['id'])
-            response['Location'] = request.build_absolute_uri() + id 
+            response['Location'] = request.build_absolute_uri() + id
             return response
-
 
 class MatriculaViewSet(viewsets.ModelViewSet):
     """Listando todas as matrículas"""
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
-    http_method_names = ['get','post','put','path']
+    http_method_names = ['get', 'post', 'put', 'path']
 
 class ListaMatriculasAluno(generics.ListAPIView):
     """Listando as matrículas de um aluno ou aluna"""

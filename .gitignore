@@ -9,8 +9,8 @@ media
 .env
 .venv
 env/
-escolavenv/
+venv/
 ENV/
 env.bak/
-escolavenv.bak/
+venv.bak/
 pythonenv*
