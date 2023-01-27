@@ -11,6 +11,7 @@ from escola.models import  Aluno, Curso, Matricula
 def criando_alunos(quantidade_de_pessoas):
     fake = Faker('pt_BR')
     Faker.seed(10)
+    qtd = 0
     for _ in range(quantidade_de_pessoas):
         cpf = CPF()
         nome = fake.name()
@@ -19,10 +20,13 @@ def criando_alunos(quantidade_de_pessoas):
         data_nascimento = fake.date_between(start_date='-18y', end_date='today')
         a = Aluno(nome=nome,rg=rg, cpf=cpf,data_nascimento=data_nascimento)
         a.save()
+        qtd += 1
+        print ("Quantidade de alunos criados : ", qtd)
 
 def criando_cursos(quantidade_de_cursos):
     fake = Faker('pt_BR')
     Faker.seed(10)
+     qtd = 0
     for _ in range(quantidade_de_cursos):
         codigo_curso = "{}{}-{}".format(random.choice("ABCDEF"), random.randrange(10, 99),random.randrange(1, 9))
         descs = ['Python Fundamentos', 'Python intermediário','Python Avançado', 'Python para Data Science', 'Python/React']
@@ -31,6 +35,8 @@ def criando_cursos(quantidade_de_cursos):
         nivel = random.choice("BIA")
         c = Curso(codigo_curso=codigo_curso,descricao=descricao, nivel=nivel)
         c.save()
+        qtd += 1
+        print ("Quantidade de alunos criados : ", qtd)
 
 
 criando_alunos(200)
