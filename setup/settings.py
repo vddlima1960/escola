@@ -26,9 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 # Application definition
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'escola',
     'corsheaders',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE = [
@@ -142,7 +143,22 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_THROTTLE_RATES': {
         'anon': '100/day',
-    }
+    },
+	#'DEFAULT_PARSER_CLASSES': [
+	#	'rest_framework_xml.parsers.XMLParser',
+    #    'rest_framework.parsers.JSONParser',
+	#],
+	#'DEFAULT_RENDERER_CLASSES': [
+    #    'rest_framework.renderers.JSONRenderer',
+	#	'rest_framework_xml.renderers.XMLRenderer',
+	#],
+    #'DEFAULT_PARSER_CLASSES': [
+    #    'rest_framework_yaml.parsers.YAMLParser',
+    #],
+    #'DEFAULT_RENDERER_CLASSES': [
+     #   'rest_framework_yaml.renderers.YAMLRenderer',
+    #],
+	
 }
 
 CORS_ALLOWED_ORIGINS = [

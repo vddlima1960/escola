@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 
+
 class AlunosViewSet(viewsets.ModelViewSet):
     """Exibindo todos os alunos e alunas"""
     queryset = Aluno.objects.all()
@@ -19,6 +20,7 @@ class CursosViewSet(viewsets.ModelViewSet):
     """Exibindo todos os cursos"""
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
+    http_method_names = ['get','post','put','path']  # somente permite estas opções para cursos
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
